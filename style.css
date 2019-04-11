@@ -1,0 +1,31 @@
+.container {
+	text-align: center;
+	margin: auto;
+	border: 3px solid green;
+	padding: 10%;
+}
+
+#time {
+	font-size: 4em;
+}
+
+.actions{
+	
+}
+.actionBtn{
+	display: inline-block;
+	color: white;
+	border-radius: 4px;
+	font-size: 28px; 
+	width: 40%;
+	margin: auto;
+}
+
+#start {
+	background-color: blue;
+
+}
+
+#stop {
+	background-color: red;
+}
