@@ -1,8 +1,17 @@
+*{
+	font-family: 'Open Sans', helvetica, arial, sans;
+}
+
 .container {
 	text-align: center;
+	max-width: 500px;
 	margin: auto;
 	border: 3px solid green;
 	padding: 10%;
+}
+
+h2{
+	
 }
 
 #time {
@@ -10,22 +19,25 @@
 }
 
 .actions{
-	
+	display: flex;
+	justify-content: space-around;
 }
-.actionBtn{
-	display: inline-block;
+
+.btn {
+	border: none;
+	border-radius: 10px;
+	width: 30%;
 	color: white;
-	border-radius: 4px;
-	font-size: 28px; 
-	width: 40%;
-	margin: auto;
+	font-size: 1.5rem;
+	line-height: 1.75em;
+	outline: none;
 }
 
-#start {
-	background-color: blue;
-
+#start{
+	background-color: #008CBA;
 }
 
-#stop {
-	background-color: red;
+#stop{
+	background-color: #f44336;
 }
+
