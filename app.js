@@ -32,6 +32,13 @@ function startTimer(duration, display) {
             if (--timer < 0) {
                 timer = duration;
             }
+            if(display.textContent == "00m 00s"){
+                isRunning = false;
+                audio.play();
+                workStatus.innerHTML = "Take a break!";
+                startBtn.innerHTML = "Reset";
+            }
+            
         }
         else{
             return 0;
@@ -42,11 +49,6 @@ function startTimer(duration, display) {
 
 function reset(){
     window.location.reload(false);
-	//document.getElementById("time").innerHTML = "25m 00s";
-    //isPaused = false;
-    //isRunning = false;
-    //startBtn.innerHTML = "Start";
-    //minutes = null;
 }
 
 function chgToPause(){
@@ -71,6 +73,9 @@ startBtn.addEventListener('click', function(){
     else if(startBtn.innerHTML == "Resume"){
         resumeTimer();
     }
+    else if(startBtn.innerHTML == "Reset"){
+        reset();
+    }
     else{
         isRunning = true;
         workStatus.innerHTML = "Work"
@@ -83,7 +88,3 @@ stopBtn.addEventListener('click', function(){
     isRunning = false;
     reset();
 });;
-
-function newFunction() {
-    let currentTime;
-}
