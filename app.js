@@ -1,63 +1,88 @@
 
-const timeDisplay = document.querySelector("#time");
+const display = document.querySelector("#time");
 const startBtn = document.querySelector("#start");
 const stopBtn = document.querySelector("#stop");
-var countingDown = false;
+const workStatus = document.querySelector("h2");
+var minutes = 60 * 25;
+var isPaused = false;
+var isRunning = false;
 var audio = new Audio('boxing.wav'); // define your audio
 
-function startClock(){
-		audio.play();
+
+
 		// Set the date to current date and time
-		startBtn.innerHTML = "Pause";
-		var countDownDate = new Date();
-		
-		countDownDate.setMinutes(countDownDate.getMinutes()+30);
 
-		// Update the count down every 1 second
-		var x = setInterval(function () {
-			if(countingDown == true){
-				// Get todays date and time
-			    var now = new Date().getTime();
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    seconds = 0;
+    //change start to pause
+    chgToPause();
 
-			    // Find the distance between now and the count down date
-			    console.log(countDownDate);
-			    console.log(now);
-			    var distance = countDownDate - now;
-			   
-			    // Time calculations for minutes and seconds
-			    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-			    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    audio.play();
+    setInterval(function () {
+        if(!isPaused && isRunning){
+             minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
 
-			    // Output the result in an element with id="demo"
-			    document.getElementById("time").innerHTML = minutes + "m " + seconds + "s ";
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
 
-			    // If the count down is over, write some text 
-			    if (distance < 0) {
-			        clearInterval(x);
-			        reset();
-			    }
-			}
-	  
-	}, 1000);
+            display.textContent = minutes + "m " + seconds + "s";
+
+            if (--timer < 0) {
+                timer = duration;
+            }
+        }
+        else{
+            return 0;
+        } 
+       
+    }, 1000);
 }
 
-
-
-
-
 function reset(){
-	document.getElementById("time").innerHTML = "25m 00s";
+    window.location.reload(false);
+	//document.getElementById("time").innerHTML = "25m 00s";
+    //isPaused = false;
+    //isRunning = false;
+    //startBtn.innerHTML = "Start";
+    //minutes = null;
+}
+
+function chgToPause(){
+    startBtn.innerHTML = "Pause";
+}
+
+function pauseTimer(){
+    startBtn.innerHTML = "Resume";
+    isPaused = true;
+}
+
+function resumeTimer(){
+    startBtn.innerHTML = "Pause";
+    isPaused = false;
 }
 
 //start button event
 startBtn.addEventListener('click', function(){
-	countingDown = true;
-   startClock();
+	if(startBtn.innerHTML == "Pause"){
+        pauseTimer();
+    }
+    else if(startBtn.innerHTML == "Resume"){
+        resumeTimer();
+    }
+    else{
+        isRunning = true;
+        workStatus.innerHTML = "Work"
+        startTimer(minutes, display);
+    }
+   
 });
 //stop button event
 stopBtn.addEventListener('click', function(){
-	countingDown = false;
-});
+    isRunning = false;
+    reset();
+});;
 
 function newFunction() {
     let currentTime;

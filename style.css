@@ -6,7 +6,7 @@
 	text-align: center;
 	max-width: 500px;
 	margin: auto;
-	border: 3px solid green;
+	/*border: 3px solid green;*/
 	padding: 10%;
 }
 
@@ -31,6 +31,16 @@ h2{
 	font-size: 1.5rem;
 	line-height: 1.75em;
 	outline: none;
+
+}
+
+#start:hover {
+  background-color: #06cec9; /* Green */
+  color: white;
+}
+
+#stop:hover{background-color: #fd8888 
+
 }
 
 #start{
