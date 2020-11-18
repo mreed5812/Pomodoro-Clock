@@ -10,7 +10,7 @@ A productivity app based on the Pomodoro Technique
 
 ## Installation
 ```
-git clone https://github.com/mreed5812/Pomodoro-Clock.git
+git clone
 ```
 
 ## How to use
